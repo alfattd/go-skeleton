@@ -1,4 +1,4 @@
-# Go Core Microservice
+# Go Skeleton
 
 ![Go Version](https://img.shields.io/badge/go-ready-blue)
 ![Docker](https://img.shields.io/badge/docker-ready-blue)

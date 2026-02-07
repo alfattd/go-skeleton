@@ -1,38 +1,13 @@
-# Stage 1: Build
 FROM golang:alpine AS builder
-
-# Install git + certificates
 RUN apk add --no-cache git ca-certificates
-
-# Set working directory
 WORKDIR /app
-
-# Copy go.mod + go.sum
 COPY go.mod go.sum ./
-
-# Download dependencies
 RUN go mod download
-
-# Copy source code
 COPY . .
-
-# Build binary (static, stripped)
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o core-service cmd/server/main.go
 
-# Stage 2: Minimal image
 FROM alpine:latest
-
-# Set working directory
 WORKDIR /root/
-
-# Copy binary dari stage 1
-COPY --from=builder /app/core-service .
-
-# Optional: copy entrypoint / env scripts if needed
-# COPY entrypoint.sh .
-
-# Expose port (default 8080)
+COPY --from=builder /app/skeleton .
 EXPOSE 80
-
-# Run binary
-CMD ["./core-service"]
+CMD ["./skeleton"]
