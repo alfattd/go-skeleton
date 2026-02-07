@@ -54,36 +54,38 @@ It is intentionally **business-logic free**, so it can be reused as a base templ
 
 ```text
 .
-├── app/                         # Core Go microservice
+├── app/
 │   ├── cmd/
 │   │   └── server/
-│   │       └── main.go          # Application entrypoint
+│   │       └── main.go
 │   │
-│   ├── internal/                # Private application code
-│   │   ├── config/
-│   │   │   └── config.go        # Environment configuration loader
+│   ├── internal/
+│   │   ├── server/
+│   │   │   ├── bootstrap.go
+│   │   │   ├── http.go
+│   │   │   └── middleware.go
 │   │   │
-│   │   ├── handler/             # HTTP handlers
-│   │   │   ├── health.go        # /health endpoint
-│   │   │   └── version.go       # /version endpoint
-│   │   │
-│   │   ├── logger/
-│   │   │   └── logger.go        # Structured logging setup
-│   │   │
-│   │   └── server/              # HTTP server & middleware
-│   │       ├── http.go          # Server bootstrap
-│   │       ├── metrics.go       # Prometheus metrics
-│   │       └── middleware.go    # HTTP middleware
+│   │   └── platform/
+│   │       ├── config/
+│   │       │   └── config.go
+│   │       │
+│   │       ├── logger/
+│   │       │   └── logger.go
+│   │       │
+│   │       └── monitor/
+│   │           ├── health.go
+│   │           ├── version.go
+│   │           └── metrics.go
 │   │
-│   ├── Dockerfile               # Multi-stage build definition
-│   ├── go.mod                   # Go dependencies
-│   └── go.sum                   # Dependency checksums
+│   ├── Dockerfile
+│   ├── go.mod
+│   └── go.sum
 │
 ├── nginx/
-│   └── default.conf             # Nginx reverse proxy config
+│   └── default.conf
 │
-├── compose.yml                  # Docker Compose orchestration
-├── .env.example                 # Environment variable template
+├── compose.yml
+├── .env.example
 ├── .gitignore
 ├── LICENSE
 └── README.md
@@ -113,11 +115,11 @@ It is intentionally **business-logic free**, so it can be reused as a base templ
 
 All configuration is provided via environment variables:
 
-| Variable        | Description        | Defaulr|
-|-----------------|--------------------|--------|
-| PORT            | Service port       | 80     |
-| SERVICE_NAME    | Service identifier | golang |
-| SERVICE_VERSION | Service version    | dev    |
+| Variable        | Description        | Default     |
+|-----------------|--------------------|-------------|
+| PORT            | Service port       | 80          |
+| SERVICE_NAME    | Service identifier | skeleton     |
+| SERVICE_VERSION | Service version    | dev          |
 
 Create a `.env` file from `.env.example` before running the service.
 
@@ -132,7 +134,7 @@ Create a `.env` file from `.env.example` before running the service.
 ### Quick Start
 
 ```bash
-git clone https://github.com/alfattd/go-core-microservice.git
+https://github.com/alfattd/go-skeleton.git
 cd go-core-microservice
 cp .env.example .env
 docker compose up -d --build
