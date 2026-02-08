@@ -134,7 +134,7 @@ Create a `.env` file from `.env.example` before running the service.
 ### Quick Start
 
 ```bash
-https://github.com/alfattd/go-skeleton.git
+git clone https://github.com/alfattd/go-skeleton.git
 cd go-core-microservice
 cp .env.example .env
 docker compose up -d --build
