@@ -5,11 +5,9 @@ services:
     environment:
       - SERVICE_NAME=${SERVICE_NAME}
       - SERVICE_VERSION=${SERVICE_VERSION}
-    env_file:
-      - .env
     restart: unless-stopped
     networks:
-      - core
+      - skeleton
 
   nginx:
     image: nginx:stable-alpine
@@ -21,7 +19,7 @@ services:
       - app
     restart: unless-stopped
     networks:
-      - core
+      - skeleton
 
 networks:
   core:
