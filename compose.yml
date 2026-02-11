@@ -22,5 +22,5 @@ services:
       - skeleton
 
 networks:
-  core:
+  skeleton:
     driver: bridge
