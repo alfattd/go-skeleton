@@ -4,18 +4,8 @@ services:
       context: ./app
     env_file:
       - .env
-    restart: unless-stopped
-    networks:
-      - skeleton
-
-  nginx:
-    image: nginx:stable-alpine
     ports:
-      - "${PORT}:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      - app
+      - "80:${APP_PORT}"
     restart: unless-stopped
     networks:
       - skeleton

@@ -9,5 +9,4 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o skeleton cmd/server/main.g
 FROM alpine:latest
 WORKDIR /root/
 COPY --from=builder /app/skeleton .
-EXPOSE 80
 CMD ["./skeleton"]

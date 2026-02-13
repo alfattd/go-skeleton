@@ -17,7 +17,7 @@ func New(cfg *config.Config) *http.Server {
 	handlerWithMetrics := MetricsMiddleware(mux)
 
 	return &http.Server{
-		Addr:    ":80",
+		Addr:    ":" + cfg.AppPort,
 		Handler: handlerWithMetrics,
 	}
 }

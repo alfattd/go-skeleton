@@ -9,14 +9,12 @@ An opinionated, production-ready Go microservice template designed for scalable 
 ## Table of Contents
 
 - [Overview](#overview)
-- [Architecture](#architecture)
 - [Project Structure](#project-structure)
 - [Tech Stack](#tech-stack)
 - [Features](#features)
 - [Configuration](#configuration)
 - [Running Locally](#running-locally)
 - [Observability](#observability)
-- [Deployment Notes](#deployment-notes)
 - [License](#license)
 
 ## Overview
@@ -27,28 +25,9 @@ This project provides a minimal yet production-grade HTTP microservice written i
 - Graceful shutdown
 - Environment-based configuration
 - Observability (health, version, metrics)
-- Docker & Nginx reverse proxy setup
+- Docker setup
 
 It is intentionally **business-logic free**, so it can be reused as a base template for future services.
-
-## Architecture
-
-```text
-[ Client ]
-     |
-     v
-[ Nginx - Public ]
-     |
-     v
-[ Docker Internal Network ]
-     |
-     v
-[ Core Service ]
-```
-
-- Only Nginx exposes a public port
-- Core service runs inside a private Docker network
-- Designed for microservice-oriented systems
 
 ## Project Structure
 
@@ -98,7 +77,6 @@ It is intentionally **business-logic free**, so it can be reused as a base templ
 - **Logging**: slog (structured JSON logging)
 - **Metrics**: Prometheus
 - **Containerization**: Docker (multi-stage build)
-- **Reverse Proxy**: Nginx
 - **Orchestration (local)**: Docker Compose
 
 ## Features
@@ -151,14 +129,6 @@ docker compose up -d --build
 - Health Check: suitable for load balancers & orchestration
 - Metrics: Prometheus-compatible /metrics
 - Logging: JSON logs for easy ingestion (ELK / Loki)
-
-## Deployment Notes
-- Core service does not expose ports publicly
-- Nginx acts as the single entry point
-- Designed to be deployed behind:
-    - Load balancer
-    - Kubernetes ingress
-    - Cloud reverse proxy
 
 ## License
 MIT License
