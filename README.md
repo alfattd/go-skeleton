@@ -46,7 +46,9 @@ It is intentionally **business-logic free**, so it can be reused as a base templ
 │   │   │
 │   │   └── platform/
 │   │       ├── config/
-│   │       │   └── config.go
+│   │       │   ├── config.go
+│   │       │   ├── helper.go
+│   │       │   └── validate.go
 │   │       │
 │   │       ├── logger/
 │   │       │   └── logger.go
@@ -59,9 +61,6 @@ It is intentionally **business-logic free**, so it can be reused as a base templ
 │   ├── Dockerfile
 │   ├── go.mod
 │   └── go.sum
-│
-├── nginx/
-│   └── default.conf
 │
 ├── compose.yml
 ├── .env.example
